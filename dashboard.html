@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Admin Dashboard</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Admin Dashboard</h1>
+        <!-- Navigation Links -->  
+        <nav>  
+            <ul>  
+                <li><a href="tenant-management.html">Manage Tenants</a></li>  
+                <li><a href="index.html">Logout</a></li>  
+            </ul>  
+        </nav>
+      <div class="tenant-summary">
+        <h2>Tenant Summary</h2>
+        <p>Total Tenants: <span id="admin-total-tenants">0</span></p>
+        <p>Total Amount Paid: <span id="admin-total-paid">0</span></p>
+        <p>Amount To Be Paid: <span id="admin-amount-due">0</span></p>
+        <p>Balance: <span id="admin-balance">0</span></p>
+        <!-- New balance display -->
+        <p>Paid Tenants: <span id="admin-paid-tenants">0</span></p>
+      </div>
+
+      <h2>Tenant Details</h2>
+      <table id="admin-tenant-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>House Number</th>
+            <!-- New house number column -->
+            <th>Phone Number</th>
+            <!-- New phone number column -->
+            <th>National ID</th>
+            <!-- New National ID column -->
+            <th>Payment Status</th>
+            <th>Details</th>
+            <!-- New details button column -->
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Tenant details will be dynamically inserted here -->
+        </tbody>
+      </table>
+
+      <!-- Profile Modal -->
+      <div id="tenant-profile-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Tenant Profile</h2>
+          <div id="tenant-details">
+            <!-- Tenant details will be populated here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      function updateAdminSummary() {
+        const tenants = JSON.parse(localStorage.getItem("tenants")) || [];
+        let totalPaid = 0;
+        let totalDue = tenants.length * 3500; // Assuming each tenant should pay \$500
+        let outstandingCount = 0;
+
+        // Populate summary statistics
+        tenants.forEach((tenant) => {
+          if (tenant.paymentStatus === "paid") {
+            totalPaid += 3500; // Adding the amount paid
+          } else {
+            outstandingCount++;
+          }
+        });
+
+        // Update admin summary statistics
+        document.getElementById("admin-total-tenants").innerText =
+          tenants.length;
+        document.getElementById("admin-total-paid").innerText = `Ksh ${totalPaid}`;
+        document.getElementById("admin-amount-due").innerText = `Ksh ${totalDue}`;
+        document.getElementById("admin-balance").innerText = `Ksh ${totalDue - totalPaid}`; // Calculate balance
+        document.getElementById("admin-paid-tenants").innerText = `${tenants.filter((tenant) => tenant.paymentStatus === "paid").length}`;
+      }
+
+      function loadTenantDetails() {
+        const tenants = JSON.parse(localStorage.getItem("tenants")) || [];
+        const tenantTableBody = document
+          .getElementById("admin-tenant-table")
+          .querySelector("tbody");
+        tenantTableBody.innerHTML = ""; // Clear existing contents
+
+        // Populate table with tenant details
+        tenants.forEach((tenant, index) => {
+          const row = tenantTableBody.insertRow();
+          row.innerHTML = `  
+                <td>${tenant.name}</td>  
+                <td>${tenant.email}</td>  
+                <td>${tenant.houseNumber}</td>  
+                <td>${tenant.phoneNumber}</td>  
+                <td>${tenant.nationalId}</td>  
+                <td>${tenant.paymentStatus}</td>  
+                <td><button onclick="showTenantDetails(${index})">Details</button></td>  
+            `;
+        });
+      }
+
+      function showTenantDetails(index) {
+        const tenants = JSON.parse(localStorage.getItem("tenants")) || [];
+        const tenant = tenants[index];
+        const tenantDetailsContainer =
+          document.getElementById("tenant-details");
+
+        // Populate tenant details
+        tenantDetailsContainer.innerHTML = `  
+            <p><strong>Name:</strong> ${tenant.name}</p>  
+            <p><strong>Email:</strong> ${tenant.email}</p>  
+            <p><strong>House Number:</strong> ${tenant.houseNumber}</p> 
+            <p><strong>House Type:</strong> ${tenant.houseType}</p> 
+            <p><strong>Phone Number:</strong> ${tenant.phoneNumber}</p>  
+            <p><strong>National ID:</strong> ${tenant.nationalId}</p>  
+            <p><strong>Payment Status:</strong> ${tenant.paymentStatus}</p>  
+        `;
+
+        // Show the modal
+        const modal = document.getElementById("tenant-profile-modal");
+        modal.style.display = "block";
+
+        // Close event
+        const closeBtn = modal.querySelector(".close");
+        closeBtn.onclick = function () {
+          modal.style.display = "none";
+        };
+
+        // Close modal when clicking outside of the modal content
+        window.onclick = function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        };
+      }
+
+      // Initial loading of tenant details and summary
+      document.addEventListener("DOMContentLoaded", function () {
+        updateAdminSummary();
+        loadTenantDetails();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,201 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {  
+    font-family: Arial, sans-serif;  
+    background-color: #f4f4f4;  
+}  
+
+.container {  
+
+    width: max-content;
+    margin: 100px auto;  
+    padding: 20px;  
+    border-radius: 10px;
+    background: white;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+}  
+.login-container {  
+    width: 30%;  
+    margin: 100px auto;  
+    padding: 20px;  
+    border-radius: 20px;
+    background: white;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+}
+h1 {  
+    color: #333; 
+    text-align: center;
+
+}  
+h3{
+    color: #333;
+    text-align: center;
+
+}
+p {  
+    margin: 10px 0;  
+}
+
+nav {  
+    margin: 20px 0;  
+    display: flex;
+    justify-content: right;
+    padding: 10px;  
+    background-color: #f3f3f3; /* Light background for the nav */  
+    border-radius: 5px; /* Rounded corners */  
+}  
+
+nav ul {  
+    list-style: none; /* Remove default bullet points */  
+    padding: 0; /* Remove padding */  
+}  
+
+nav li {  
+    display: inline; /* Display list items in a line */  
+    margin-right: 15px; /* Spacing between links */  
+}  
+ 
+nav a {  
+    margin-right: 15px;  
+    text-decoration: none;  
+    color: #007BFF;  
+    font-size: 1.5rem;
+
+}  
+
+
+table {  
+    width: 100%;  
+    border-collapse: collapse;  
+}  
+
+th, td {  
+    border: 1px solid #ccc;  
+    padding: 10px;  
+    text-align: left;  
+}  
+
+button {  
+    background-color: #007BFF;  
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: white;  
+    border: none;  
+    padding: 10px 15px;  
+    cursor: pointer;  
+}  
+button.edit {  
+    background-color: green;  
+    color: white;  
+}  
+
+button.delete {  
+    background-color: red;  
+    color: white;  
+}  
+
+#tenant-summary {  
+    margin-bottom: 20px;  
+    padding: 10px;  
+    border: 1px solid #ccc;  
+    border-radius: 5px;  
+} 
+
+button:hover {  
+    background-color: #0056b3;  
+}  
+
+input, select {  
+    width: 100%;  
+    padding: 10px;  
+    margin: 10px 0;  
+    border: 1px solid #ccc;  
+}
+/* Modal Styles */  
+.modal {  
+    display: none; /* Hidden by default */  
+    position: fixed; /* Stay in place */  
+    z-index: 1; /* Sit on top */  
+    left: 0;  
+    top: 0;  
+    width: 100%; /* Full width */  
+    height: 100%; /* Full height */  
+    overflow: auto; /* Enable scroll if needed */  
+    background-color: rgb(0,0,0); /* Fallback color */  
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */  
+}  
+
+.modal-content {  
+    background-color: #fefefe;  
+    margin: 15% auto; /* 15% from the top and centered */  
+    padding: 20px;  
+    border: 1px solid #888;  
+    width: 80%; /* Could be more or less, depending on screen size */  
+}  
+
+.close {  
+    color: #aaa;  
+    float: right;  
+    font-size: 28px;  
+    font-weight: bold;  
+}  
+
+.close:hover,  
+.close:focus {  
+    color: black;  
+    text-decoration: none;  
+    cursor: pointer;  
+}
+
+/* Responsive Styles */  
+@media (max-width: 768px) {  
+    /* Styles for tablets and mobile phones */  
+    nav li {  
+        display: block; /* Stack links vertically */  
+        margin: 5px 0; /* Adjust margin */  
+    }  
+
+    table {  
+        width: 100%;  
+        font-size: 14px; /* Decrease font size for smaller screens */  
+    }  
+
+    th, td {  
+        padding: 10px; /* Increase padding for better touch targets */  
+    }  
+
+    h1 {  
+        font-size: 24px; /* Smaller heading size */  
+    }  
+
+    h2 {  
+        font-size: 20px; /* Smaller heading size */  
+    }  
+}  
+
+@media (max-width: 480px) {  
+    /* Styles for mobile phones */  
+    .container {  
+        padding: 10px; /* Less padding for mobile */  
+    }  
+
+    h1 {  
+        font-size: 20px; /* Further reduce heading size */  
+    }  
+
+    h2 {  
+        font-size: 18px; /* Further reduce heading size */  
+    }  
+
+    table th, table td {  
+        font-size: 12px; /* Smaller font for small screens */  
+        padding: 5px; /* Reduce padding */  
+    }  
+
+    nav {  
+        text-align: center; /* Center align navigation on small screens */  
+    }  
+}  

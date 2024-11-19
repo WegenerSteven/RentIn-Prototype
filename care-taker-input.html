@@ -1,0 +1,36 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="styles.css">  
+    <title>Add New Tenant</title>  
+</head>  
+<body>  
+    <div class="container">  
+        <h1>Add New Tenant</h1>  
+        <form id="tenant-form">  
+            <label for="tenant-name">Tenant Name</label>
+            <input type="text" id="tenant-name" placeholder="Name" required>  
+            <label for="tenant-email">Tenant Email</label>
+            <input type="email" id="tenant-email" placeholder="Email" required>  
+            <label for="tenant-house-number">House Number</label>
+            <input type="text" id="tenant-house-number" placeholder="House Number" required> 
+            <label for="tenant-house-type">House Type</label>
+            <input type="text" id="tenant-house-type" placeholder="House Type" required> 
+            <label for="tenant-phone-number">Phone Number</label>
+            <input type="text" id="tenant-phone-number" placeholder="Phone Number" required>  
+            <label for="tenant-national-id">National ID</label>
+            <input type="text" id="tenant-national-id" placeholder="National ID" required>  
+            <label for="payment-status">Payment Status</label>
+            <select id="payment-status" required>  
+                <option value="">Select Payment Status</option>  
+                <option value="Paid">Paid</option>  
+                <option value="Unpaid">Unpaid</option>  
+            </select> 
+            <button type="submit">Submit</button>  
+        </form>  
+    </div>  
+    <script src="script.js"></script>  
+</body>  
+</html>
