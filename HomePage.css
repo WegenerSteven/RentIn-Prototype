@@ -1,0 +1,261 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body */
+  body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    line-height: 1.6;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #004d40;
+    color: white;
+  }
+  
+  .navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar .login-btn {
+    color: white;
+    text-decoration: none;
+    border: 2px solid white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: 0.3s ease;
+  }
+  
+  .navbar .login-btn:hover {
+    background-color: white;
+    color: #004d40;
+  }
+  
+  /* Hero Section */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: url('https://i.postimg.cc/1X7C5ytD/pexels-kelly-1179532-2682770.jpg') no-repeat center center/cover;
+    height: 70vh;
+    padding: 2rem;
+  }
+  
+  .hero-text {
+    max-width: 600px;
+  }
+  
+  .hero-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .hero-text .login-action-btn {
+    background-color: #004d40;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s ease;
+  }
+  
+  .hero-text .login-action-btn:hover {
+    background-color: white;
+    color: #004d40;
+  }
+  
+  /* Features Section */
+  .features {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .features h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .card {
+    background: #e0f2f1;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+  }
+  
+  .card h3 {
+    font-size: 1.2rem;
+    color: #004d40;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* About Us Section */
+  .about-us {
+    padding: 2rem;
+    text-align: center;
+    background-color: #e0f7fa;
+  }
+  
+  .about-us h2 {
+    font-size: 2rem;
+    color: #004d40;
+    margin-bottom: 1rem;
+  }
+  
+  .about-us p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1rem;
+  }
+  
+  /* Gallery Section */
+  .gallery {
+    padding: 2rem;
+    background-color: #ffffff;
+    text-align: center;
+  }
+  
+  .gallery h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .gallery-container img {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Testimonials Section */
+  .testimonials {
+    padding: 2rem;
+    background-color: #f1f8e9;
+    text-align: center;
+  }
+  
+  .testimonials h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .testimonial-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .testimonial {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: left;
+  }
+  
+  .testimonial p {
+    font-style: italic;
+    color: #555;
+  }
+  
+  .testimonial h4 {
+    margin-top: 1rem;
+    color: #004d40;
+    text-align: right;
+  }
+  
+  /* Footer */
+  .footer {
+    padding: 2rem;
+    background-color: #004d40;
+    color: white;
+    text-align: center;
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links div {
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 1rem;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+      padding: 1rem;
+    }
+  
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+  
+    .hero-text p {
+      font-size: 1rem;
+    }
+  
+    .card {
+      width: 100%;
+      max-width: 300px;
+    }
+  
+    .gallery-container img {
+      width: 100%;
+      max-width: 300px;
+    }
+  
+    .testimonial {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  
