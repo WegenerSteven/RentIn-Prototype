@@ -10,25 +10,29 @@
     <div class="container-form">  
         <h1>Add New Tenant</h1>  
         <form id="tenant-form">  
-            <label for="tenant-name">Tenant Name</label>
-            <input type="text" id="tenant-name" placeholder="Name" required>  
-            <label for="tenant-email">Tenant Email</label>
-            <input type="email" id="tenant-email" placeholder="Email" required>  
             <label for="tenant-house-number">House Number</label>
             <input type="text" id="tenant-house-number" placeholder="House Number" required> 
-            <label for="tenant-house-type">House Type</label>
-            <input type="text" id="tenant-house-type" placeholder="House Type" required> 
-            <label for="tenant-phone-number">Phone Number</label>
-            <input type="text" id="tenant-phone-number" placeholder="Phone Number" required>  
+            <label for="tenant-name">Tenant Name</label>
+            <input type="text" id="tenant-name" placeholder="Name" required>  
             <label for="tenant-national-id">National ID</label>
-            <input type="text" id="tenant-national-id" placeholder="National ID" required>  
+            <input type="text" id="tenant-national-id" placeholder="National ID" required>             
+            <label for="tenant-phone-number">Phone Number</label>
+            <input type="text" id="tenant-phone-number" placeholder="Phone Number" required> 
+            <label for="rent-fee">Rent Fee</label>
+            <select id="rent-fee" title="Rent Fee" required>
+                <option value="">Select rent to be paid</option>
+                <option value="5500">5500</option>
+                <option value="6000">6000</option>
+            </select>
+            <label for="balance">Balance</label>
+            <input type="balance" id="balance" placeholder="balance">
             <label for="payment-status">Payment Status</label>
             <select id="payment-status" required>  
                 <option value="">Select Payment Status</option>  
-                <option value="Paid">Paid</option>  
+                <option value="paid">Paid</option>  
                 <option value="Unpaid">Unpaid</option>  
             </select> 
-            <button type="button">Back</button>
+            <button type="button" onclick="location.href='tenant-management.html'">Back</button>
             <button type="submit">Submit</button>  
         </form>  
     </div>  

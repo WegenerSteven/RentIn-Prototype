@@ -14,7 +14,7 @@
         <ul>
           <li><a href="#">Dashboard</a></li>
           <li><a href="tenant-management.html">Manage Tenants</a></li>
-          <li><a href="index.html">Logout</a></li>
+          <li><a href="HomePage.html">Logout</a></li>
         </ul>
       </nav>
       <div class="container-summary">
@@ -37,16 +37,12 @@
       <table id="admin-tenant-table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Email</th>
             <th>House Number</th>
-            <!-- New house number column -->
-            <th>House Type</th>
-            <!-- New house type column -->
-            <th>Phone Number</th>
-            <!-- New phone number column -->
+            <th>Name</th>
             <th>National ID</th>
-            <!-- New National ID column -->
+            <th>Phone Number</th>
+            <th>Rent Fee</th>
+            <th>Balance</th>
             <th>Payment Status</th>
             <th>Details</th>
             <!-- New details button column -->
@@ -115,32 +111,18 @@
         tenants.forEach((tenant, index) => {
           const row = tenantTableBody.insertRow();
           row.innerHTML = `  
-                <td>${tenant.name}</td>  
-                <td>${tenant.email}</td>  
-                <td>${tenant.houseNumber}</td> 
-                <td>${tenant.houseType}</td>
-                <td>${tenant.phoneNumber}</td>  
-                <td>${tenant.nationalId}</td>  
-                <td>${tenant.paymentStatus}</td>  
+                <td>${tenant.houseNumber}</td>    
+            <td>${tenant.name}</td>   
+             <td>${tenant.nationalId}</td>
+            <td>${tenant.phoneNumber}</td>
+           <td>${tenant.rentFee}</td>
+           <td>${tenant.balance}</td>
+            <td>${tenant.paymentStatus}</td>  
                 <td><button onclick="showTenantDetails(${index})">Details</button></td>  
             `;
         });
       }
 
-      const viewTenantDetails = document.getElementById("admin-data-table");
-      const adminDataTable = document.getElementById("admin-tenant-table");
-
-      viewTenantDetails.addEventListener("click", () => {
-        if (
-          adminDataTable.style.display === "none" ||
-          adminDataTable.style.display === ""
-        ) {
-          adminDataTable.style.display = "block"; // Show the table
-          loadTenantDetails(); // Load admin data when the button is clicked
-        } else {
-          adminDataTable.style.display = "none"; // Hide the table
-        }
-      });
       function showTenantDetails(index) {
         const tenants = JSON.parse(localStorage.getItem("tenants")) || [];
         const tenant = tenants[index];
@@ -149,12 +131,12 @@
 
         // Populate tenant details
         tenantDetailsContainer.innerHTML = `  
-            <p><strong>Name:</strong> ${tenant.name}</p>  
-            <p><strong>Email:</strong> ${tenant.email}</p>  
             <p><strong>House Number:</strong> ${tenant.houseNumber}</p> 
-            <p><strong>House Type:</strong> ${tenant.houseType}</p> 
+            <p><strong>Name:</strong> ${tenant.name}</p>  
             <p><strong>Phone Number:</strong> ${tenant.phoneNumber}</p>  
-            <p><strong>National ID:</strong> ${tenant.nationalId}</p>  
+            <p><strong>National ID:</strong> ${tenant.nationalId}</p> 
+            <p><strong>Rent Fee:</strong> ${tenant.rentFee}</p>  
+            <p><strong>Balance</strong> ${tenant.balance}</p>   
             <p><strong>Payment Status:</strong> ${tenant.paymentStatus}</p>  
         `;
 

@@ -2,9 +2,8 @@
 // Function to load tenants from local storage and display in the table
 function loadTenants() {
   const tenants = JSON.parse(localStorage.getItem("tenants")) || [];
-  const tenantTableBody = document
-    .getElementById("tenant-table")
-    .querySelector("tbody");
+  const tenantTableBody = document.getElementById("tenant-table")
+  .querySelector("tbody");
 
   if (!tenantTableBody) {
     console.error("Table body not found");
@@ -18,18 +17,19 @@ function loadTenants() {
   // Populate table with tenants
   tenants.forEach((tenant, index) => {
     const row = tenantTableBody.insertRow();
-    row.innerHTML = `  
-            <td>${tenant.name}</td>  
-            <td>${tenant.email}</td>  
-            <td>${tenant.houseNumber}</td>
-            <td>${tenant.houseType}</td>
-            <td>${tenant.phoneNumber}</td>
+    row.innerHTML = `   
+            <td>${tenant.houseNumber}</td>    
+            <td>${tenant.name}</td>   
             <td>${tenant.nationalId}</td>
+            <td>${tenant.phoneNumber}</td>
+            <td>${tenant.rentFee}</td>
+            <td>${tenant.balance}</td>
             <td>${tenant.paymentStatus}</td>  
             <td>  
                 <button class="edit" onclick="editTenant(${index})">Edit</button>  
                 <button class="delete" onclick="deleteTenant(${index})">Delete</button>  
-            </td>  
+            </td> 
+
         `;
 
     // Update statistics
@@ -52,23 +52,22 @@ document
   .getElementById("tenant-form")
   ?.addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent default form submission behavior
-
-    const name = document.getElementById("tenant-name").value;
-    const email = document.getElementById("tenant-email").value;
     const houseNumber = document.getElementById("tenant-house-number").value;
-    const houseType = document.getElementById("tenant-house-type").value;
-    const phoneNumber = document.getElementById("tenant-phone-number").value;
+    const name = document.getElementById("tenant-name").value;
     const nationalId = document.getElementById("tenant-national-id").value;
+    const phoneNumber = document.getElementById("tenant-phone-number").value;
+    const rentFee = document.getElementById("rent-fee").value;
+    const balance = document.getElementById("balance").value;
     const paymentStatus = document.getElementById("payment-status").value;
 
     const tenants = JSON.parse(localStorage.getItem("tenants")) || [];
     tenants.push({
-      name,
-      email,
       houseNumber,
-      houseType,
-      phoneNumber,
+      name,
       nationalId,
+      phoneNumber,
+      rentFee,
+      balance,
       paymentStatus,
     });
     localStorage.setItem("tenants", JSON.stringify(tenants));
@@ -82,33 +81,34 @@ function editTenant(index) {
   const tenants = JSON.parse(localStorage.getItem("tenants")) || [];
   const tenant = tenants[index];
 
-  const name = prompt("Edit tenant name:", tenant.name);
-  const email = prompt("Edit tenant email:", tenant.email);
   const houseNumber = prompt("Edit house number:", tenant.houseNumber);
-  const houseType = prompt("Edit house type:", tenant.houseType);
-  const phoneNumber = prompt("Edit phone number:", tenant.phoneNumber);
+  const name = prompt("Edit tenant name:", tenant.name);
   const nationalId = prompt("Edit national ID:", tenant.nationalId);
+  const phoneNumber = prompt("Edit phone number:", tenant.phoneNumber);
+  const rentFee = prompt("Edit rent Fee:", tenant.rentFee);
+  const balance = prompt("Edit balance:", tenant.balance);
+
   const paymentStatus = prompt(
     "Edit payment status (Paid/Outstanding):",
     tenant.paymentStatus
   );
 
   if (
-    name &&
-    email &&
     houseNumber &&
-    houseType &&
+    name &&
     phoneNumber &&
     nationalId &&
+    rentFee &&
+    balance &&
     paymentStatus
   ) {
     tenants[index] = {
-      name,
-      email,
       houseNumber,
-      houseType,
-      phoneNumber,
+      name,
       nationalId,
+      phoneNumber,
+      rentFee,
+      balance,
       paymentStatus,
     };
     localStorage.setItem("tenants", JSON.stringify(tenants));
