@@ -1,5 +1,4 @@
 // script.js
-
 // Function to load tenants from local storage and display in the table
 function loadTenants() {
   const tenants = JSON.parse(localStorage.getItem("tenants")) || [];
@@ -131,4 +130,3 @@ function deleteTenant(index) {
 
 // Initial loading of tenants
 loadTenants();
-

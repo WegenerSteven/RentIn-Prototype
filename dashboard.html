@@ -9,21 +9,28 @@
   <body>
     <div class="container">
       <h1>Admin Dashboard</h1>
-        <!-- Navigation Links -->  
-        <nav>  
-            <ul>  
-                <li><a href="tenant-management.html">Manage Tenants</a></li>  
-                <li><a href="index.html">Logout</a></li>  
-            </ul>  
-        </nav>
-      <div class="tenant-summary">
-        <h2>Tenant Summary</h2>
-        <p>Total Tenants: <span id="admin-total-tenants">0</span></p>
-        <p>Total Amount Paid: <span id="admin-total-paid">0</span></p>
-        <p>Amount To Be Paid: <span id="admin-amount-due">0</span></p>
-        <p>Balance: <span id="admin-balance">0</span></p>
-        <!-- New balance display -->
-        <p>Paid Tenants: <span id="admin-paid-tenants">0</span></p>
+      <!-- Navigation Links -->
+      <nav>
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="tenant-management.html">Manage Tenants</a></li>
+          <li><a href="index.html">Logout</a></li>
+        </ul>
+      </nav>
+      <div class="container-summary">
+        <div class="Houses">
+          <h2>Houses</h2>
+          <p>Houses: <span id="admin-total-tenants">0</span></p>
+          <!-- New balance display -->
+          <p>Houses cleared <span id="admin-paid-tenants">0</span></p>
+          <p>Rent arrairs: <span id="admin-arrairs-tenants"></span></p>
+        </div>
+        <div class="Finance">
+          <h2>Finance</h2>
+          <p>Total Rent Bill: <span id="admin-amount-due">0</span></p>
+          <p>Rent Paid: <span id="admin-total-paid">0</span></p>
+          <p>Rent Balance: <span id="admin-balance">0</span></p>
+        </div>
       </div>
 
       <h2>Tenant Details</h2>
@@ -34,6 +41,8 @@
             <th>Email</th>
             <th>House Number</th>
             <!-- New house number column -->
+            <th>House Type</th>
+            <!-- New house type column -->
             <th>Phone Number</th>
             <!-- New phone number column -->
             <th>National ID</th>
@@ -79,10 +88,20 @@
         // Update admin summary statistics
         document.getElementById("admin-total-tenants").innerText =
           tenants.length;
-        document.getElementById("admin-total-paid").innerText = `Ksh ${totalPaid}`;
-        document.getElementById("admin-amount-due").innerText = `Ksh ${totalDue}`;
-        document.getElementById("admin-balance").innerText = `Ksh ${totalDue - totalPaid}`; // Calculate balance
-        document.getElementById("admin-paid-tenants").innerText = `${tenants.filter((tenant) => tenant.paymentStatus === "paid").length}`;
+        document.getElementById(
+          "admin-total-paid"
+        ).innerText = `Ksh ${totalPaid}`;
+        document.getElementById(
+          "admin-amount-due"
+        ).innerText = `Ksh ${totalDue}`;
+        document.getElementById("admin-balance").innerText = `Ksh ${
+          totalDue - totalPaid
+        }`; // Calculate balance
+        document.getElementById("admin-paid-tenants").innerText = `${
+          tenants.filter((tenant) => tenant.paymentStatus === "paid").length
+        }`;
+        document.getElementById("admin-arrairs-tenants").innerText =
+          outstandingCount;
       }
 
       function loadTenantDetails() {
@@ -98,7 +117,8 @@
           row.innerHTML = `  
                 <td>${tenant.name}</td>  
                 <td>${tenant.email}</td>  
-                <td>${tenant.houseNumber}</td>  
+                <td>${tenant.houseNumber}</td> 
+                <td>${tenant.houseType}</td>
                 <td>${tenant.phoneNumber}</td>  
                 <td>${tenant.nationalId}</td>  
                 <td>${tenant.paymentStatus}</td>  
@@ -107,6 +127,20 @@
         });
       }
 
+      const viewTenantDetails = document.getElementById("admin-data-table");
+      const adminDataTable = document.getElementById("admin-tenant-table");
+
+      viewTenantDetails.addEventListener("click", () => {
+        if (
+          adminDataTable.style.display === "none" ||
+          adminDataTable.style.display === ""
+        ) {
+          adminDataTable.style.display = "block"; // Show the table
+          loadTenantDetails(); // Load admin data when the button is clicked
+        } else {
+          adminDataTable.style.display = "none"; // Hide the table
+        }
+      });
       function showTenantDetails(index) {
         const tenants = JSON.parse(localStorage.getItem("tenants")) || [];
         const tenant = tenants[index];
