@@ -178,15 +178,13 @@ input, select {
         margin: 5px 0; /* Adjust margin */  
     }  
 
-    table {  
-        width: 100%;  
-        font-size: 14px; /* Decrease font size for smaller screens */  
+    table, th, td {  
+        width: 90%;  
+        font-size: 14px;
+        margin: 20px auto;
+        padding: 10px;
+        /* Decrease font size for smaller screens */  
     }  
-
-    th, td {  
-        padding: 10px; /* Increase padding for better touch targets */  
-    }  
-
     h1 {  
         font-size: 24px; /* Smaller heading size */  
     }  
@@ -194,12 +192,22 @@ input, select {
     h2 {  
         font-size: 20px; /* Smaller heading size */  
     }  
+    .container, .login-container, .container-summary, .container-form {  
+        width: 100%;  
+        margin: 20px auto;
+        padding: 10px;
+    }
+    .container-summary{
+       flex-direction: column;
+    }
 }  
 
 @media (max-width: 480px) {  
     /* Styles for mobile phones */  
-    .container {  
-        padding: 10px; /* Less padding for mobile */  
+    .container, .login-container, .container-summary, .container-form {  
+        padding: 10px;
+        width: 100%;
+        margin: 100px auto; /* Less padding for mobile */  
     }  
 
     h1 {  
@@ -210,9 +218,10 @@ input, select {
         font-size: 18px; /* Further reduce heading size */  
     }  
 
-    table th, table td {  
+    table, th, td {  
         font-size: 12px; /* Smaller font for small screens */  
-        padding: 5px; /* Reduce padding */  
+        padding: 5px;
+        width: 90%; /* Reduce padding */  
     }  
 
     nav {  
