@@ -2,8 +2,9 @@
 // Function to load tenants from local storage and display in the table
 function loadTenants() {
   const tenants = JSON.parse(localStorage.getItem("tenants")) || [];
-  const tenantTableBody = document.getElementById("tenant-table")
-  .querySelector("tbody");
+  const tenantTableBody = document
+    .getElementById("tenant-table")
+    .querySelector("tbody");
 
   if (!tenantTableBody) {
     console.error("Table body not found");
@@ -13,6 +14,7 @@ function loadTenants() {
 
   let totalPaid = 0;
   let outstandingCount = 0;
+  let paidTenantsCount = 0;
 
   // Populate table with tenants
   tenants.forEach((tenant, index) => {
@@ -23,6 +25,7 @@ function loadTenants() {
             <td>${tenant.nationalId}</td>
             <td>${tenant.phoneNumber}</td>
             <td>${tenant.rentFee}</td>
+            <td>${tenant.paidAmount}</td>
             <td>${tenant.balance}</td>
             <td>${tenant.paymentStatus}</td>  
             <td>  
@@ -33,8 +36,12 @@ function loadTenants() {
         `;
 
     // Update statistics
-    if (tenant.paymentStatus === "paid") {
-      totalPaid++;
+    totalPaid += parseFloat(tenant.paidAmount);
+    if (
+      tenant.paymentStatus === "paid" ||
+      tenant.paymentStatus === "overpaid"
+    ) {
+      paidTenantsCount++;
     } else {
       outstandingCount++;
     }
@@ -42,9 +49,9 @@ function loadTenants() {
 
   // Calculate and display the updated totals
   document.getElementById("total-tenants").innerText = tenants.length;
-  document.getElementById("total-paid").innerText = `Ksh ${totalPaid * 3500}`; // Assuming each tenant pays \$500
+  document.getElementById("total-paid").innerText = `Ksh ${totalPaid}`; // Assuming each tenant pays \$500
   document.getElementById("outstanding-rent").innerText = `${outstandingCount}`;
-  document.getElementById("paid-tenants").innerText = `${totalPaid}`;
+  document.getElementById("paid-tenants").innerText = `${paidTenantsCount}`;
 }
 
 // Add tenant details from caretaker-input.html
@@ -57,8 +64,18 @@ document
     const nationalId = document.getElementById("tenant-national-id").value;
     const phoneNumber = document.getElementById("tenant-phone-number").value;
     const rentFee = document.getElementById("rent-fee").value;
-    const balance = document.getElementById("balance").value;
-    const paymentStatus = document.getElementById("payment-status").value;
+    const paidAmount = document.getElementById("paid-amount").value;
+    let balance = paidAmount - rentFee;
+    let paymentStatus = "not cleared";
+
+    if (balance == 0) {
+      paymentStatus = "paid";
+    } else if (balance > 0) {
+      paymentStatus = "overpaid";
+    } else {
+      paymentStatus = "not cleared";
+      balance = -balance;
+    }
 
     const tenants = JSON.parse(localStorage.getItem("tenants")) || [];
     tenants.push({
@@ -67,6 +84,7 @@ document
       nationalId,
       phoneNumber,
       rentFee,
+      paidAmount,
       balance,
       paymentStatus,
     });
@@ -86,12 +104,24 @@ function editTenant(index) {
   const nationalId = prompt("Edit national ID:", tenant.nationalId);
   const phoneNumber = prompt("Edit phone number:", tenant.phoneNumber);
   const rentFee = prompt("Edit rent Fee:", tenant.rentFee);
-  const balance = prompt("Edit balance:", tenant.balance);
+  const paidAmount = prompt("Edit paid amount:", tenant.paidAmount);
+  let balance = paidAmount - rentFee;
+  let paymentStatus = "not cleared";
 
-  const paymentStatus = prompt(
-    "Edit payment status (Paid/Outstanding):",
-    tenant.paymentStatus
-  );
+  if (balance == 0) {
+    paymentStatus = "paid";
+  } else if (balance > 0) {
+    paymentStatus = "overpaid";
+    balance = +balance;
+  } else {
+    paymentStatus = "not cleared";
+    balance = -balance;
+  }
+
+  // const paymentStatus = prompt(
+  //   "Edit payment status (Paid/Outstanding):",
+  //   tenant.paymentStatus
+  // );
 
   if (
     houseNumber &&
@@ -99,6 +129,7 @@ function editTenant(index) {
     phoneNumber &&
     nationalId &&
     rentFee &&
+    paidAmount &&
     balance &&
     paymentStatus
   ) {
@@ -108,6 +139,7 @@ function editTenant(index) {
       nationalId,
       phoneNumber,
       rentFee,
+      paidAmount,
       balance,
       paymentStatus,
     };

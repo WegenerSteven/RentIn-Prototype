@@ -1,41 +1,57 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <link rel="stylesheet" href="styles.css">  
-    <title>Add New Tenant</title>  
-</head>  
-<body>  
-    <div class="container-form">  
-        <h1>Add New Tenant</h1>  
-        <form id="tenant-form">  
-            <label for="tenant-house-number">House Number</label>
-            <input type="text" id="tenant-house-number" placeholder="House Number" required> 
-            <label for="tenant-name">Tenant Name</label>
-            <input type="text" id="tenant-name" placeholder="Name" required>  
-            <label for="tenant-national-id">National ID</label>
-            <input type="text" id="tenant-national-id" placeholder="National ID" required>             
-            <label for="tenant-phone-number">Phone Number</label>
-            <input type="text" id="tenant-phone-number" placeholder="Phone Number" required> 
-            <label for="rent-fee">Rent Fee</label>
-            <select id="rent-fee" title="Rent Fee" required>
-                <option value="">Select rent to be paid</option>
-                <option value="5500">5500</option>
-                <option value="6000">6000</option>
-            </select>
-            <label for="balance">Balance</label>
-            <input type="balance" id="balance" placeholder="balance">
-            <label for="payment-status">Payment Status</label>
-            <select id="payment-status" required>  
-                <option value="">Select Payment Status</option>  
-                <option value="paid">Paid</option>  
-                <option value="Unpaid">Unpaid</option>  
-            </select> 
-            <button type="button" onclick="location.href='tenant-management.html'">Back</button>
-            <button type="submit">Submit</button>  
-        </form>  
-    </div>  
-    <script src="script.js"></script>  
-</body>  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Add New Tenant</title>
+  </head>
+  <body>
+    <div class="container-form">
+      <h1>Add New Tenant</h1>
+      <form id="tenant-form">
+        <label for="tenant-house-number">House Number</label>
+        <input
+          type="text"
+          id="tenant-house-number"
+          placeholder="House Number"
+          required
+        />
+        <label for="tenant-name">Tenant Name</label>
+        <input type="text" id="tenant-name" placeholder="Name" required />
+        <label for="tenant-national-id">National ID</label>
+        <input
+          type="text"
+          id="tenant-national-id"
+          placeholder="National ID"
+          required
+        />
+        <label for="tenant-phone-number">Phone Number</label>
+        <input
+          type="text"
+          id="tenant-phone-number"
+          placeholder="Phone Number"
+          required
+        />
+        <label for="rent-fee">Rent Fee</label>
+        <select id="rent-fee" title="Rent Fee" required>
+          <option value="">Select rent to be paid</option>
+          <option value="5500">5500</option>
+          <option value="6000">6000</option>
+        </select>
+        <label for="paid amount">Rent Paid</label>
+        <input
+          type="text"
+          id="paid-amount"
+          placeholder="Paid Amount"
+          required
+        />
+        <button type="button" onclick="location.href='tenant-management.html'">
+          Back
+        </button>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
